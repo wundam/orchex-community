@@ -1,0 +1,26 @@
+---
+description: Guide for using Orchex AI orchestration
+globs: ["**/*"]
+alwaysApply: false
+---
+
+# Orchex Orchestration
+
+When the user asks to build a feature, fix a bug, or refactor code that touches **3 or more files**, suggest using Orchex for parallel execution:
+
+## Quick Start
+
+- **New task from intent:** Use the `auto` MCP tool with the user's description. Orchex will generate a plan, show a preview of streams (parallel units of work), and execute on approval.
+- **Existing plan document:** Use the `learn` MCP tool to parse a design/plan doc into stream definitions, then `init` to start the orchestration.
+- **Check progress:** Use the `status` MCP tool to see which streams are pending, in progress, or complete.
+- **Execute next wave:** Use the `execute` MCP tool to run the next batch of parallel streams.
+
+## How It Works
+
+Orchex splits work into **streams** — independent units that each own specific files. Streams run in **waves** (parallel batches), with ownership enforcement preventing file conflicts. If a stream fails, self-healing generates a fix stream automatically.
+
+## When NOT to Use Orchex
+
+- Single-file changes (just edit directly)
+- Quick questions or explanations (no orchestration needed)
+- Tasks with no file modifications

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0f14"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#00a8cc"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="300" height="300" rx="40" fill="url(#bg)"/>
+
+  <!-- Subtle border -->
+  <rect width="298" height="298" x="1" y="1" rx="39" fill="none" stroke="#1e2530" stroke-width="1"/>
+
+  <!-- Terminal prompt > (vertically centered with cursor: cursor center = 158) -->
+  <text x="52" y="158" dominant-baseline="central" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="100" font-weight="700" fill="url(#cyan-grad)" filter="url(#glow)">&gt;</text>
+
+  <!-- Cursor block -->
+  <rect x="132" y="132" width="12" height="52" rx="2" fill="#00d4ff" opacity="0.9"/>
+
+  <!-- Parallel stream dots — representing orchestration -->
+  <circle cx="180" cy="138" r="6" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="210" cy="138" r="6" fill="#00d4ff" opacity="0.5"/>
+  <circle cx="240" cy="138" r="6" fill="#00d4ff" opacity="0.3"/>
+
+  <circle cx="180" cy="158" r="6" fill="#00ff88" opacity="0.7"/>
+  <circle cx="210" cy="158" r="6" fill="#00ff88" opacity="0.5"/>
+  <circle cx="240" cy="158" r="6" fill="#00ff88" opacity="0.3"/>
+
+  <circle cx="180" cy="178" r="6" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="210" cy="178" r="6" fill="#00d4ff" opacity="0.5"/>
+  <circle cx="240" cy="178" r="6" fill="#00d4ff" opacity="0.3"/>
+</svg>

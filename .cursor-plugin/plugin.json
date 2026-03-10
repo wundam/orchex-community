@@ -1,0 +1,13 @@
+{
+  "name": "orchex",
+  "displayName": "Orchex — AI Orchestration Autopilot",
+  "description": "Auto-plan, parallelize, and execute multi-file tasks across 6 LLM providers with ownership enforcement and self-healing.",
+  "version": "1.0.0",
+  "author": { "name": "Wundam" },
+  "homepage": "https://orchex.dev",
+  "repository": "https://github.com/wundam/orchex-community",
+  "license": "BSL-1.1",
+  "keywords": ["orchestration", "ai", "mcp", "parallel", "multi-llm", "autopilot"],
+  "logo": "public/logo.svg",
+  "mcpServers": "mcp.json"
+}

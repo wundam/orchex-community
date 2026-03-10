@@ -1,0 +1,14 @@
+---
+description: Warns about active Orchex orchestration ownership
+globs: [".orchex/active/manifest.yaml"]
+alwaysApply: false
+---
+
+# Active Orchex Orchestration
+
+An Orchex orchestration is currently active. Before editing files manually:
+
+1. **Check status first:** Use the `status` MCP tool to see which files are owned by active streams.
+2. **Do not edit owned files:** Files listed under `writes:` in active or in-progress streams are managed by Orchex. Manual edits will cause conflicts.
+3. **Rollback if needed:** Use the `rollback-stream` MCP tool to revert a stream's changes via git.
+4. **Complete when done:** Use the `complete` MCP tool with `scope: "orchestration"` and `archive: true` to archive the orchestration when all work is finished.

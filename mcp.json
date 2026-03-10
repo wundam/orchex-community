@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "orchex": {
+      "command": "npx",
+      "args": ["-y", "@wundam/orchex"]
+    }
+  }
+}
