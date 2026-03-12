@@ -4,6 +4,10 @@
 
 Community hub and Cursor plugin for [Orchex](https://orchex.dev) — autopilot AI orchestration for multi-file coding tasks.
 
+<a href="https://glama.ai/mcp/servers/wundam/orchex-community">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/wundam/orchex-community/badge" alt="orchex MCP server" />
+</a>
+
 ## What is Orchex?
 
 Orchex is an MCP server that orchestrates AI coding agents in parallel. Give it a task, and it auto-plans streams of work, executes them across waves with ownership enforcement (no file conflicts), and self-heals on failure. Supports 6 LLM providers with BYOK (Bring Your Own Key).
