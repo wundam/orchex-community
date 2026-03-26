@@ -14,6 +14,14 @@ Orchex is an MCP server that orchestrates AI coding agents in parallel. Give it 
 
 Search for **"Orchex"** in the Cursor Marketplace, or visit [cursor.com/marketplace](https://cursor.com/marketplace).
 
+### Auto Setup
+
+```bash
+npx @wundam/orchex setup
+```
+
+Auto-detects your IDE and writes the MCP config. Works with Cursor, Windsurf, Claude Code, and VS Code.
+
 ### Manual Setup
 
 Add to your Cursor MCP config (`~/.cursor/mcp.json`):
