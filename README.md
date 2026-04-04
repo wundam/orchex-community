@@ -6,7 +6,7 @@ Community hub and Cursor plugin for [Orchex](https://orchex.dev) — autopilot A
 
 ## What is Orchex?
 
-Orchex is an MCP server that orchestrates AI coding agents in parallel. Give it a task, and it auto-plans streams of work, executes them across waves with ownership enforcement (no file conflicts), and self-heals on failure. Supports 6 LLM providers with BYOK (Bring Your Own Key).
+Orchex is an MCP server that orchestrates AI coding agents in parallel. Give it a task, and it auto-plans streams of work, executes them across waves with ownership enforcement (no file conflicts), and self-heals on failure. Supports 6 LLM providers with BYOK (Bring Your Own Key) and dynamic model discovery.
 
 ## Cursor Plugin
 
@@ -44,6 +44,17 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 1. Open Cursor and ask: *"Build a REST API with authentication and tests"*
 2. Orchex generates a plan, shows you the streams, and executes on approval
 3. Streams run in parallel waves — each stream owns its files, no conflicts
+
+## What's New
+
+**rc.21** — Dynamic model registry & error diagnostics:
+- Auto-discovers available models from all 6 LLM providers — no more "model not found" errors
+- Key-aware smart routing — streams only go to providers where you have valid API keys
+- Plan preview shows model and estimated cost per stream before execution
+- Smarter self-healing — infrastructure errors no longer waste tokens on futile fix retries
+- Failed streams roll back file changes automatically, keeping your repo clean
+
+See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 
 ## Community
 
