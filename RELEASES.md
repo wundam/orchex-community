@@ -6,6 +6,30 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.22] — 2026-04-05
+
+### Highlights
+- Cloud sync fixed — run history now saves correctly (broken since rc.17)
+- Ownership enforcement no longer rejects files the stream legitimately owns
+- Error reports show real categories and actionable messages instead of "unknown"
+
+### Changes
+- **fix**: Cloud sync HTTP 500 resolved — run history persists to the cloud correctly. This bug persisted across 4 versions (rc.17–rc.21)
+- **fix**: Ownership violations no longer trigger on files a stream explicitly owns. Path formatting differences from LLMs no longer cause false rejections
+- **fix**: Ownership violation messages now include the stream's owned files list for easier debugging
+- **fix**: Error reports now show real error categories (e.g., `runtime_error`, `network`, `auth_error`) instead of blanket "unknown" for most failure types
+- **fix**: Failed streams retain their identity in reports — no more unnamed "unknown" entries in error output
+- **fix**: When file rollback fails after a verify error, the failure is now surfaced in the error message with guidance to manually check affected files
+
+### Upgrade
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
 ## [1.0.0-rc.21] — 2026-04-04
 
 ### Highlights

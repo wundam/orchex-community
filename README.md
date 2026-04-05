@@ -47,12 +47,12 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.21** — Dynamic model registry & error diagnostics:
-- Auto-discovers available models from all 6 LLM providers — no more "model not found" errors
-- Key-aware smart routing — streams only go to providers where you have valid API keys
-- Plan preview shows model and estimated cost per stream before execution
-- Smarter self-healing — infrastructure errors no longer waste tokens on futile fix retries
-- Failed streams roll back file changes automatically, keeping your repo clean
+**rc.22** — Reliability & error diagnostics:
+- Cloud sync fixed — run history now saves correctly (was broken since rc.17)
+- Ownership enforcement no longer falsely rejects files a stream legitimately owns
+- Error reports show real categories and actionable messages instead of "unknown"
+- Failed streams retain their identity in reports instead of appearing as unnamed entries
+- Verify rollback failures are now surfaced with guidance to check affected files
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 
