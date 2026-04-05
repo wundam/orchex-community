@@ -6,6 +6,27 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.25] — 2026-04-06
+
+### Highlights
+- Monorepo workspace support — pnpm, yarn, and npm workspace projects now work correctly
+- Local package dependencies automatically use `workspace:*` protocol instead of `"*"`
+- Plans follow your spec files more faithfully — type definitions, versions, and code copied verbatim
+
+### Changes
+- **feat**: Automatic monorepo detection — orchex detects pnpm workspaces, npm/yarn workspaces, and Bun workspaces. The planner instructs the LLM to use `workspace:*` for local packages and the correct filter/workspace commands for build and test
+- **feat**: Local workspace package discovery — the planner knows which packages are local vs external, preventing the LLM from treating local packages as npm registry dependencies
+- **fix**: Plan fidelity significantly improved — when you provide a spec or plan file, the LLM now copies type definitions, dependency versions, and package.json fields exactly as written instead of generating its own interpretation
+
+### Upgrade
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
 ## [1.0.0-rc.24] — 2026-04-06
 
 ### Highlights

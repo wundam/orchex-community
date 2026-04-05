@@ -47,12 +47,10 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.24** — Package manager detection & plan-file bypass:
-- Automatic pnpm, yarn, and bun detection — non-npm projects now work out of the box
-- New `--plan-file` flag — use your own hand-written plan instead of LLM-generated
-- Two-strike upstream root-cause detection — smarter error recovery for single failures
-- 4x more detail in error diagnostics
-- Verify commands auto-corrected when they reference files from other streams
+**rc.25** — Monorepo support & plan fidelity:
+- Monorepo workspace support — pnpm, yarn, and npm workspace projects now work correctly
+- Local package dependencies automatically use `workspace:*` protocol
+- Plans follow your spec files more faithfully — types, versions, and code copied verbatim
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 
