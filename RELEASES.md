@@ -6,6 +6,32 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.23] — 2026-04-05
+
+### Highlights
+- **Real-time execution progress** — see what every stream is doing as it runs, with status icons, wave progress, and elapsed time
+- **Smarter self-healing** — when multiple streams fail from the same root cause, orchex fixes the upstream stream instead of retrying each one independently
+- **Plan adherence** — orchex now follows your spec files verbatim instead of reinterpreting the code you provided
+- **Failure correlation** — execution reports identify root-cause streams when downstream failures share the same error pattern
+
+### Changes
+- **feat**: `status` tool returns an `executionProgress` block during active execution — MCP hosts can relay formatted progress directly to users
+- **feat**: `auto` and `execute` responses include polling guidance (15-30s interval) so LLM hosts automatically show progress
+- **feat**: CLI prints real-time per-stream output during `orchex run` (stream started, completed, failed with timing)
+- **feat**: Execution reports include failure correlation data identifying root-cause streams
+- **fix**: Self-healer detects correlated downstream failures and generates a single root-cause fix stream instead of retrying each downstream independently
+- **fix**: Auto-planner instructs the LLM to follow referenced plan/spec files verbatim
+- **fix**: Verify commands validated — full test suite commands flagged on non-test streams
+
+### Upgrade
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
 ## [1.0.0-rc.22] — 2026-04-05
 
 ### Highlights

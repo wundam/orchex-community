@@ -47,12 +47,12 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.22** — Reliability & error diagnostics:
-- Cloud sync fixed — run history now saves correctly (was broken since rc.17)
-- Ownership enforcement no longer falsely rejects files a stream legitimately owns
-- Error reports show real categories and actionable messages instead of "unknown"
-- Failed streams retain their identity in reports instead of appearing as unnamed entries
-- Verify rollback failures are now surfaced with guidance to check affected files
+**rc.23** — Execution progress & smarter self-healing:
+- Real-time execution progress — see what every stream is doing as it runs
+- Smarter self-healing — fixes the upstream root cause instead of retrying each downstream
+- Plans now follow your spec files verbatim instead of reinterpreting your code
+- Failure correlation identifies root-cause streams in execution reports
+- LLM hosts automatically show progress during orchestration
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 
