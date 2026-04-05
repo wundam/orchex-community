@@ -47,12 +47,12 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.23** — Execution progress & smarter self-healing:
-- Real-time execution progress — see what every stream is doing as it runs
-- Smarter self-healing — fixes the upstream root cause instead of retrying each downstream
-- Plans now follow your spec files verbatim instead of reinterpreting your code
-- Failure correlation identifies root-cause streams in execution reports
-- LLM hosts automatically show progress during orchestration
+**rc.24** — Package manager detection & plan-file bypass:
+- Automatic pnpm, yarn, and bun detection — non-npm projects now work out of the box
+- New `--plan-file` flag — use your own hand-written plan instead of LLM-generated
+- Two-strike upstream root-cause detection — smarter error recovery for single failures
+- 4x more detail in error diagnostics
+- Verify commands auto-corrected when they reference files from other streams
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 

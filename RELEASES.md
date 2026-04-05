@@ -6,6 +6,32 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.24] — 2026-04-06
+
+### Highlights
+- Automatic package manager detection — pnpm, yarn, and bun projects now work out of the box
+- New `--plan-file` flag — bypass LLM plan generation and use your own hand-written plan
+- Smarter error recovery — single-failure root-cause detection prevents wasted retries
+- 4x more detail in error diagnostics
+
+### Changes
+- **feat**: Orchex now detects your package manager from lockfiles and generates correct verification commands. Previously all verify commands used `npm`, causing failures in pnpm/yarn/bun projects
+- **feat**: `--plan-file` CLI flag and `plan_file` MCP parameter — feed a pre-written plan directly into the orchestration pipeline, skipping LLM plan generation entirely
+- **feat**: Two-strike upstream root-cause detection — when a downstream stream fails due to bad upstream output, the first fix attempt gets enriched context. If it fails again with the same error, the system automatically fixes the upstream stream instead
+- **feat**: Execution reports now include `errorRetryable` and `errorSelfHealable` fields for better failure diagnostics
+- **fix**: Verify commands that reference files owned by other streams are now auto-corrected to scoped build checks instead of failing
+- **fix**: Error messages in failure diagnostics now show full detail instead of being truncated
+- **fix**: Blocked stream status now correctly reflects when dependency files exist on disk
+
+### Upgrade
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
 ## [1.0.0-rc.23] — 2026-04-05
 
 ### Highlights
