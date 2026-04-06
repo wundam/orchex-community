@@ -47,10 +47,11 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.25** — Monorepo support & plan fidelity:
-- Monorepo workspace support — pnpm, yarn, and npm workspace projects now work correctly
-- Local package dependencies automatically use `workspace:*` protocol
-- Plans follow your spec files more faithfully — types, versions, and code copied verbatim
+**rc.26** — Monorepo plan crash fix:
+- Plans containing directory paths in stream reads no longer break execution
+- Directory paths are now caught upfront with a clear warning in the plan preview
+- New end-to-end regression coverage for monorepo workflows
+- All rc.25 monorepo + plan-fidelity improvements remain in place
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 

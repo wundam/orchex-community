@@ -6,6 +6,30 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.26] — 2026-04-06
+
+### Highlights
+- Fixed monorepo plan crashes — directory paths in stream reads no longer break execution
+- Plans containing directory paths are now caught upfront with a clear warning
+- New end-to-end regression coverage for monorepo workflows
+
+### Changes
+- **fix**: Plans no longer crash when the planner emits a directory path in a stream's `reads:` list. Directories are removed at validation time with a `path_removed` warning surfaced in the plan preview
+- **fix**: Plans containing directory paths in `owns:` are now flagged with a `path_invalid` warning so you can correct the plan before running
+- **fix**: The auto-plan prompt now explicitly tells the LLM that `reads:` and `owns:` must list specific files, not directory paths — reducing the upstream cause of the directory-in-reads regression introduced when monorepo conventions made the LLM more aware of package directories
+
+### Notes
+- The `workspace:*` protocol fix and plan fidelity improvements from rc.25 remain in place — rc.26 is now covered by automated regression tests
+
+### Upgrade
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
 ## [1.0.0-rc.25] — 2026-04-06
 
 ### Highlights
