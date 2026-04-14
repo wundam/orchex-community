@@ -6,6 +6,25 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.27] — 2026-04-14
+
+### Highlights
+- Smarter self-healing: fix streams now receive explicit context about which of their files already exist on disk from prior attempts, reducing "Conflicts detected" errors on repeated fix attempts.
+- Internal cleanup and stability improvements.
+
+### Changes
+- **fix**: Self-healer fix streams now include disk-state context in their prompts. When a stream is retried after a previous attempt left files partially written, the LLM is explicitly told which files exist and instructed to use `edit`/`replace` operations rather than `create`. This addresses a reported issue where grandchild fix streams (retries of retries) could fail with "Conflicts detected". **Note**: mitigation without a confirmed reproduction case — please report any recurrence so a deterministic fix can land in a future release.
+- **chore**: Removed unused internal middleware that was never wired into the request pipeline.
+
+### Upgrade
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
 ## [1.0.0-rc.26] — 2026-04-06
 
 ### Highlights

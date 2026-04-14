@@ -47,11 +47,10 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.26** — Monorepo plan crash fix:
-- Plans containing directory paths in stream reads no longer break execution
-- Directory paths are now caught upfront with a clear warning in the plan preview
-- New end-to-end regression coverage for monorepo workflows
-- All rc.25 monorepo + plan-fidelity improvements remain in place
+**rc.27** — Smarter self-healing:
+- Fix streams now receive explicit disk-state context — the LLM knows which files already exist from prior attempts and chooses the right operation (`edit`/`replace` vs `create`)
+- Reduces "Conflicts detected" errors on repeated fix attempts
+- Internal cleanup and stability improvements
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 
