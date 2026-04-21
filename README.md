@@ -47,10 +47,10 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.27** — Smarter self-healing:
-- Fix streams now receive explicit disk-state context — the LLM knows which files already exist from prior attempts and chooses the right operation (`edit`/`replace` vs `create`)
-- Reduces "Conflicts detected" errors on repeated fix attempts
-- Internal cleanup and stability improvements
+**rc.28** — Dashboard widgets, fraud protection, consistent plan validation:
+- Three new dashboard widgets — Platform health, Preview a plan, and per-stream picker with copy-paste MCP arguments
+- Fraud protection for payment flows — automated defenses on new accounts
+- Consistent plan validation — path rules now enforced uniformly at plan-load (see [Upgrade Notes](RELEASES.md) if your plans use absolute paths, globs, directory entries, or `..` traversal)
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 

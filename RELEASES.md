@@ -6,6 +6,66 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.28] — 2026-04-21
+
+### Highlights
+
+- Three new dashboard widgets — Platform health (live metrics), Preview a plan (run the planner without executing), and a per-stream picker that emits ready-to-paste MCP arguments
+- Fraud protection for payment flows — automated defenses against fraudulent signups and payment disputes, active on all new accounts
+- Consistent plan validation — path rules are now enforced uniformly at plan-load (no more inconsistent behavior between layers); see Upgrade Notes below if your plans use absolute paths, globs, directory entries, or `..` traversal
+
+### Changes
+
+- **feat (dashboard)**: Platform health widget on `/dashboard` home — uptime, request volume, p95 latency, error rate, execution success rate. New authenticated endpoint `GET /api/v1/metrics/summary` returns the same payload for external consumers.
+- **feat (dashboard)**: "Preview a plan" form on `/dashboard` home. New endpoint `POST /api/v1/dashboard/preview` runs the planner and returns the plan, estimated cost, stream list, and wave count without executing. Rate-limited to 10 previews/hour/user.
+- **feat (dashboard)**: Per-stream checkboxes in the Preview card emit a live-updating JSON argument block you copy-paste into your MCP client. Your local client then calls `orchex.auto` with the `approved_streams` filter applied — no server-side filesystem access required.
+- **feat (dashboard)**: Beta Gate Dashboard (admin-only) — 6-metric gate display with PASS/FAIL pills per metric and an overall gate banner. Replaces the 3-metric stub.
+- **feat (cli/mcp)**: Plan-file auto-detection — when your `auto` intent references a `.md` file with `## Stream` blocks, you'll see a soft nudge to use the `plan_file` parameter (which bypasses LLM generation for exact fidelity).
+- **feat (cli)**: Error output expanded — errors now show `[category]: full message (200 chars)` instead of truncated text. MCP `status` tool includes the full error message alongside the category.
+- **feat (infra)**: Optional read-replica support via `DATABASE_URL_REPLICA`. When unset, all reads hit the primary (fallback-safe). When set, only two analytical reads are routed to the replica; everything latency-sensitive stays on primary. New endpoint `GET /health/replica-lag` reports `{ mode, lagSeconds }`.
+- **feat (security)**: Fraud protection for payment flows. Signups from known disposable-email providers are rejected at account creation. Payment methods are screened for fraud when saved or charged. Accounts that accumulate repeated chargebacks are suspended automatically. No user action required for legitimate accounts. If you believe your account was blocked in error, contact support.
+- **feat (launch)**: H1.2 launch video package — 85s master, 28s Product Hunt cut, 8s loop GIF, and before/after still. Built from a single scene graph. Real hero recording remains a planned follow-up.
+- **change (plan validation)**: Plans are now validated at load time by a single schema. The same path rules apply everywhere — no more inconsistency between parser, ownership check, and manifest init. See Upgrade Notes below.
+- **change (health)**: `/health` 5xx threshold is now a 15-minute rolling window. Transient spikes no longer leave the endpoint degraded until restart. Lifetime counters still available to consumers that need them.
+- **change (security)**: Content Security Policy tightened — `frame-ancestors` now blocks embedding, external hosts restricted to actual dependencies, regression test pins the directive list.
+- **fix (billing)**: Subscription billing no longer silently falls back when the payment provider is partially configured — partial config now fails loudly instead of breaking checkout for weeks.
+- **fix (health)**: The readiness probe no longer feeds its own 5xx responses into the error-rate threshold (previously a self-DOS loop on idle traffic).
+- **fix (forms)**: CSRF cookie now refreshes on every request — forms submitted more than an hour after page load no longer 403.
+- **fix (mcp)**: Auto-plan "generating" orphan states after MCP process restart are now detected via a heartbeat file and rewritten as failed instead of hanging forever.
+- **fix (cli)**: Provider billing errors (e.g. API credit top-up) now surface as plain text instead of raw JSON blobs.
+
+### Upgrade Notes
+
+**Plan validation tightening (developer-facing)**
+
+If your plan files contain any of the following in `owns` or `reads`, they will be rejected at plan-load on rc.28 and later:
+
+- Absolute paths: `owns: ['/Users/you/project/src/a.ts']`
+- Path traversal: `owns: ['../../escape.ts']`
+- Directory entries: `owns: ['src/']` (trailing slash) or bare directory names
+- Glob characters: `owns: ['src/**/*.ts']`, `owns: ['src/?.ts']`
+
+On rc.27 these were tolerated inconsistently — some layers accepted them, others rejected — which caused silent surprises at runtime. rc.28 rejects all four categories uniformly with clear error messages at plan-load.
+
+**How to fix:** change each offending entry to a relative path to a specific file. If you were using globs intentionally, enumerate the matching files instead.
+
+### Known notes
+
+- **RC-channel bake**: the plan-validation consolidation landed the same day as this release. Report any unexpected plan rejections or orchestration regressions so a deterministic fix can land in rc.29.
+- **Dist-tag**: rc.28 publishes to `@next` only. Users on `npx @wundam/orchex@latest` stay on rc.27 until v1.0.0 stable moves the tag.
+- **Kimi (Moonshot AI) 7th provider**: pending rc.29 after fraud-defense calibration completes.
+
+### Upgrade
+
+```bash
+# On the @next channel
+npm install -g @wundam/orchex@next
+# or one-shot
+npx @wundam/orchex@next
+```
+
+---
+
 ## [1.0.0-rc.27] — 2026-04-14
 
 ### Highlights
