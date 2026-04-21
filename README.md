@@ -47,10 +47,10 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.28** — Dashboard widgets, fraud protection, consistent plan validation:
-- Three new dashboard widgets — Platform health, Preview a plan, and per-stream picker with copy-paste MCP arguments
-- Fraud protection for payment flows — automated defenses on new accounts
-- Consistent plan validation — path rules now enforced uniformly at plan-load (see [Upgrade Notes](RELEASES.md) if your plans use absolute paths, globs, directory entries, or `..` traversal)
+**rc.29** — Kimi (Moonshot AI) is the 7th supported LLM provider:
+- K2 default model with 256k context window
+- Competitive pricing ($0.60/M input / $2.50/M output)
+- Set `KIMI_API_KEY` and pass `--provider kimi` — full fallback chain integrated with the dynamic model registry
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 

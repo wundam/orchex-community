@@ -6,6 +6,27 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.29] — 2026-04-22
+
+### Highlights
+
+- **Kimi (Moonshot AI) is the 7th supported LLM provider** — K2 default model with 256k context window, competitive pricing ($0.60/M input / $2.50/M output), and the full fallback chain integrated with the dynamic model registry
+
+### Changes
+
+- **feat (providers)**: Kimi (Moonshot AI) provider support. Set `KIMI_API_KEY` (or `MOONSHOT_API_KEY` alias) in your environment and pass `--provider kimi` on the CLI or `provider: "kimi"` on MCP tools. Base URL defaults to `https://api.moonshot.ai/v1` (override via `KIMI_BASE_URL`). Default model is `kimi-k2-0905-preview`; the fallback chain also covers `kimi-latest` and `moonshot-v1-{8k,32k,128k}`.
+- **fix (cli)**: `orchex run` with an unrecognized `--provider` value now lists all 7 supported providers in the error message. Previously the list was hand-maintained and missed `bedrock`.
+
+### Upgrade
+
+```bash
+npm install -g @wundam/orchex@latest
+# or one-shot
+npx @wundam/orchex
+```
+
+---
+
 ## [1.0.0-rc.28] — 2026-04-21
 
 ### Highlights
