@@ -52,16 +52,15 @@ On rc.27 these were tolerated inconsistently — some layers accepted them, othe
 ### Known notes
 
 - **RC-channel bake**: the plan-validation consolidation landed the same day as this release. Report any unexpected plan rejections or orchestration regressions so a deterministic fix can land in rc.29.
-- **Dist-tag**: rc.28 publishes to `@next` only. Users on `npx @wundam/orchex@latest` stay on rc.27 until v1.0.0 stable moves the tag.
+- **Dist-tag**: rc.28 published to both `@latest` and `@next`. `npm install -g @wundam/orchex` or `npx @wundam/orchex` now pulls rc.28.
 - **Kimi (Moonshot AI) 7th provider**: pending rc.29 after fraud-defense calibration completes.
 
 ### Upgrade
 
 ```bash
-# On the @next channel
-npm install -g @wundam/orchex@next
+npm install -g @wundam/orchex@latest
 # or one-shot
-npx @wundam/orchex@next
+npx @wundam/orchex
 ```
 
 ---
