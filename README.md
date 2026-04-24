@@ -6,7 +6,7 @@ Community hub and Cursor plugin for [Orchex](https://orchex.dev) — autopilot A
 
 ## What is Orchex?
 
-Orchex is an MCP server that orchestrates AI coding agents in parallel. Give it a task, and it auto-plans streams of work, executes them across waves with ownership enforcement (no file conflicts), and self-heals on failure. Supports 6 LLM providers with BYOK (Bring Your Own Key) and dynamic model discovery.
+Orchex is an MCP server that orchestrates AI coding agents in parallel. Give it a task, and it auto-plans streams of work, executes them across waves with ownership enforcement (no file conflicts), and self-heals on failure. Supports 7 LLM providers with BYOK (Bring Your Own Key) and dynamic model discovery.
 
 ## Cursor Plugin
 
