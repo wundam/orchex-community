@@ -47,10 +47,11 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.29** — Kimi (Moonshot AI) is the 7th supported LLM provider:
-- K2 default model with 256k context window
-- Competitive pricing ($0.60/M input / $2.50/M output)
-- Set `KIMI_API_KEY` and pass `--provider kimi` — full fallback chain integrated with the dynamic model registry
+**rc.30** — Trust-boundary enforcement pass:
+- Suspended accounts now see a dedicated suspension page and are blocked from API, dashboard, and billing actions
+- MCP servers now report their actual package version to clients (previously hard-coded across all RCs)
+- MCP tool annotations now honestly describe mutation and destruction behavior for correct auto-approval decisions
+- `add_stream` enforces the same strict path rules as `init` — declared schema and runtime validation finally match
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 

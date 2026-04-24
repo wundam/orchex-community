@@ -6,6 +6,41 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.30] — 2026-04-24
+
+### Highlights
+
+- Suspended accounts now see a dedicated suspension page and are blocked from API, dashboard, and billing actions — suspension is fully enforced end-to-end
+- MCP servers now report their actual package version to connecting clients (previously hard-coded across all RCs)
+- MCP tool annotations now honestly describe mutation and destruction behavior, so hosts can make correct auto-approval decisions
+- `add_stream` now enforces the same strict path rules as `init` — declared MCP schema and runtime validation finally match
+
+### Changes
+
+- **feat**: Added an account-suspended landing page reachable without auth, so the suspension redirect terminates cleanly.
+- **fix**: `add_stream` rejects path traversal (`..`), glob characters, and file-ownership collisions with existing streams before writing to the manifest. Declared MCP `inputSchema` now uses the strict path shape.
+- **fix**: Account suspension is now enforced in auth middleware (403 `ACCOUNT_SUSPENDED` on API, redirect on pages) and in checkout creation (403 `account_suspended` before any Stripe call).
+- **fix**: MCP handshake version is now derived from `package.json` at startup for both the stdio and HTTP servers.
+- **fix**: Official MCP registry now serves the correct package version — previously 18 releases behind. A new prepublish sync prevents recurrence.
+- **fix**: MCP tool annotation hints updated to match runtime behavior:
+  - `learn` no longer claims `readOnlyHint` (it updates usage counters).
+  - `complete` now sets `destructiveHint` (archive mode moves state).
+  - `reload` now sets `destructiveHint` (terminates the server process).
+
+### Upgrade Notes
+
+- **Database migrations must be applied** for the suspension enforcement to take effect. If you upgraded from an earlier RC and run against your own PostgreSQL instance, run the migration step after upgrading; otherwise the suspension check silently allows all users through.
+
+### Upgrade
+
+```bash
+npm install -g @wundam/orchex@latest
+# or one-shot
+npx @wundam/orchex
+```
+
+---
+
 ## [1.0.0-rc.29] — 2026-04-22
 
 ### Highlights
