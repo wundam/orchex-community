@@ -6,6 +6,59 @@ For full documentation, visit [orchex.dev](https://orchex.dev).
 
 ---
 
+## [1.0.0-rc.32] — 2026-05-05
+
+### Highlights
+
+- **Hardened MCP transport authentication** — unauthenticated MCP calls to the cloud server now return a clear 401 with a sign-in CTA (Cursor / Windsurf / Claude Code surface this to users)
+- **Paid-tier signup unblocked** — pricing-page CTAs (`?plan=pro` and `?plan=team`) now route to a working signup form instead of the invite-only dead end
+- **More resilient cloud execution** — orchex-cloud network hiccups now surface as clear errors instead of silent hangs
+- **Better visibility** — environment variables that override your config file now warn at startup; execution logs preserve history across runs for post-mortem inspection
+
+### Changes
+
+- **feat(mcp)**: MCP `initialize` handshake records `(clientName, clientVersion)` server-side per authenticated session for analytics — no phone-home, no client-side beacons.
+- **feat(cloud)**: All cloud-mode network calls now use `AbortController` for proper timeout cancellation.
+- **feat(logging)**: Execution log is now append-only with `=== RUN <timestamp> ===` boundary markers between runs (replaces previous truncate-on-start behavior).
+- **fix(server)**: `/mcp` cloud transport now enforces authentication with a CTA-augmented 401 response for unauthenticated callers.
+- **fix(signup)**: `/signup?plan=pro|team` no longer requires an invite code — paid-tier prospects can now complete signup.
+- **fix(cli)**: `orchex` CLI warns at startup when environment variables override your `~/.orchex/config.json`.
+
+### Notes for cloud users
+
+The `/mcp` endpoint on orchex.dev now returns 401 for unauthenticated callers (previously responded with limited capability). If you're connecting an MCP client to the cloud transport without auth, run `orchex login` or sign in at orchex.dev to continue.
+
+### Upgrade
+
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
+## [1.0.0-rc.31] — 2026-04-25
+
+### Highlights
+
+- **Stronger signup defenses** — disposable-email blocking and brute-force rate limiting now cover all signup paths, not just the HTML form
+
+### Changes
+
+- **fix(auth)**: Disposable-email block now applies uniformly across the JSON signup API, the HTML signup form, and the Google OAuth new-user branch.
+- **feat(auth)**: Brute-force rate limiting on invite-code redemption and signup endpoints — caps repeated attempts per IP.
+
+### Upgrade
+
+```bash
+npm install -g @wundam/orchex@latest
+# or
+npx @wundam/orchex@latest
+```
+
+---
+
 ## [1.0.0-rc.30] — 2026-04-24
 
 ### Highlights

@@ -47,11 +47,11 @@ Orchex auto-detects API keys from your shell environment (`ANTHROPIC_API_KEY`, `
 
 ## What's New
 
-**rc.30** — Trust-boundary enforcement pass:
-- Suspended accounts now see a dedicated suspension page and are blocked from API, dashboard, and billing actions
-- MCP servers now report their actual package version to clients (previously hard-coded across all RCs)
-- MCP tool annotations now honestly describe mutation and destruction behavior for correct auto-approval decisions
-- `add_stream` enforces the same strict path rules as `init` — declared schema and runtime validation finally match
+**rc.32** — npm-to-beta + `/mcp` trust-boundary + reliability hotfix:
+- Hardened MCP transport authentication — unauthenticated cloud-server calls return a clear 401 with a sign-in CTA
+- Paid-tier signup unblocked — `/signup?plan=pro|team` now reaches a working form instead of the invite-only dead end
+- More resilient cloud execution — orchex-cloud network hiccups surface as clear errors instead of silent hangs
+- Better visibility — config-overriding environment variables warn at startup; execution logs preserve history across runs
 
 See the [full release notes](RELEASES.md) or visit the [changelog](https://orchex.dev/docs/changelog).
 
